@@ -1,0 +1,63 @@
+@startuml
+skinparam roundcorner 20
+skinparam class {
+BackgroundColor White
+ArrowColor Black
+BorderColor Black
+classFontSize 25
+}
+skinparam stereotypeCBackgroundColor PaleGreen
+
+title BankAppTextVersion
+
+class Bank {
+  ~ list : ArrayList<BankAccount>
+  ---
+  -search(accountNumberIn : String) : int
+  +getTotal() : int
+  +getItem(accountNumberIn : String) : BankAccount
+  +addAccount(accountNumberIn : String, nameIn : String) : boolean
+  +depositMoney(accountNumberIn : String amountIn : double) : boolean
+  +withdrawMoney(accountNumberIn : String, amountIn : double) : boolean
+  +removeAccount(accountNumberIn : String) : boolean
+           }
+class BankAccount {
+  - {static}interestRate : double
+  - balance : double
+  - accountName : String
+  - accountNumber : String
+  ---
+  + BankAccount(numberIn : String, nameIn : String)
+  + getAccountName() : String
+  + getAccountNumber() : String
+  + getBalance() : dobule
+  + deposit(amountIn : double) : void
+  + withdraw(amountIn : double) : boolean
+  + {static}setInterestRate(rateIn : double) : void
+  + {static}getInterestRate() : double
+  + addInterest() : void
+
+           }
+
+class  BankApplication<<utility>> {
+  + main({static}args : String[])) : void
+  ~ option1({static} bankIn : Bank) : void
+  ~ option2({static} bankIn : Bank) : void
+  ~ option3({static} bankIn : Bank) : void
+  ~ option4({static} bankIn : Bank) : void
+  ~ option5({static} bankIn : Bank) : void
+}
+
+class EasyScanner<<utility>> {
+  + nextInt({static}) : int
+  + nextDouble({static}) : double
+  + nextString({static}) : String
+  + nextChar({static}) : char
+}
+
+'java.utilArrayList<|--o{Bank
+'java.utilArrayList||..o{Bank
+Bank *-- java.util.ArrayList
+'Bank||..o{BankAccount
+Bank o-- BankAccount
+@enduml
