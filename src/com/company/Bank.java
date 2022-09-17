@@ -31,7 +31,7 @@ public class Bank {
         {
             return list.get(index);
         } else {
-            return null; // no such account
+            return null; //no such account
         }
     }
 
